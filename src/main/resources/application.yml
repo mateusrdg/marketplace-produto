@@ -13,7 +13,7 @@ spring:
   datasource:
     username: postgres
     password: 123456
-    url: jdbc:postgresql://192.168.99.100:15432/produto
+    url: jdbc:postgresql://localhost:15432/produto
 server:
   port: 8083
 eureka:
