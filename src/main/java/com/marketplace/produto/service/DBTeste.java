@@ -1,5 +1,6 @@
 package com.marketplace.produto.service;
 
+import com.marketplace.produto.model.dto.CategoriaDTO;
 import com.marketplace.produto.model.dto.ProdutoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,11 @@ public class DBTeste {
     @Autowired
     private ProdutoService service;
 
+    @Autowired
+    private CategoriaService categoriaService;
+
     public void testDatabase(){
-        List<ProdutoDTO> produtos = Arrays.asList(ProdutoDTO.builder().descricao("lapis").valor(valueOf(1)).build(),
+        List<ProdutoDTO> produtos = Arrays.asList(ProdutoDTO.builder().descricao("caneta").valor(valueOf(1)).build(),
                 ProdutoDTO.builder().descricao("caderno").valor(valueOf(14)).build(),
                 ProdutoDTO.builder().descricao("cadeira").valor(valueOf(200)).build(),
                 ProdutoDTO.builder().descricao("garrafa").valor(valueOf(7)).build(),
@@ -25,4 +29,10 @@ public class DBTeste {
 
         produtos.forEach(service::inserir);
     }
+
+
+
+
+
+
 }

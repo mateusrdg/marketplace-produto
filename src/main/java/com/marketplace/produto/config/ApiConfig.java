@@ -16,8 +16,12 @@ public class ApiConfig {
     public ModelMapper modelMapper(){
         return new ModelMapper();
     }
-    @Bean
+
     public void testarDatabase() {
         dbTeste.testDatabase();
     }
-}
+
+    }
+
+
+

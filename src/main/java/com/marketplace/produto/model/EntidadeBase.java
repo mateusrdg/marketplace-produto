@@ -44,4 +44,8 @@ public class EntidadeBase extends EntidadeAPI {
         this.alteracao = Calendar.getInstance();
     }
 
+
+
+
+
 }

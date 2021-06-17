@@ -1,10 +1,10 @@
 package com.marketplace.produto.controller;
 
 import com.marketplace.produto.enums.TipoExportacao;
+import com.marketplace.produto.model.Categoria;
 import com.marketplace.produto.model.Produto;
 import com.marketplace.produto.model.dto.ProdutoDTO;
 import com.marketplace.produto.service.ProdutoService;
-import com.marketplace.produto.util.ReportUtils;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +21,6 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
-    @Autowired
-    private ReportUtils reportUtils;
 
     @GetMapping
     public ResponseEntity buscarTodos(){
@@ -53,13 +51,6 @@ public class ProdutoController {
     public ResponseEntity deletar(@PathVariable Long id) {
         produtoService.deletar(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @SneakyThrows
-    @GetMapping(value = "/exportar")
-    public ResponseEntity exportarProdutos(@RequestParam TipoExportacao tipo){
-        String retorno = reportUtils.exportReportProdutos(tipo);
-        return ResponseEntity.ok(retorno);
     }
 
 }
