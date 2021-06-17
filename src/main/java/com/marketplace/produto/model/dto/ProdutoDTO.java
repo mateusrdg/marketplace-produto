@@ -1,4 +1,5 @@
 package com.marketplace.produto.model.dto;
+import com.marketplace.produto.model.Categoria;
 import lombok.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,5 +19,9 @@ public class ProdutoDTO {
 
     private BigDecimal valor;
 
-    private List<CategoriaDTO> categorias = new ArrayList<>();
+
+
+
+
+
 }
