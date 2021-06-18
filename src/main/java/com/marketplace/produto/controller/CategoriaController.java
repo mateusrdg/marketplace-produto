@@ -1,5 +1,4 @@
 package com.marketplace.produto.controller;
-
 import com.marketplace.produto.model.Categoria;
 import com.marketplace.produto.model.dto.CategoriaDTO;
 import com.marketplace.produto.repository.CategoriaRepository;
@@ -9,19 +8,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.util.List;
-import java.util.Optional;
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
-    @Autowired
     private CategoriaService categoriaService;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @GetMapping
      public ResponseEntity list(){
@@ -30,12 +29,13 @@ public class CategoriaController {
     }
     @GetMapping("{id}")
     public Optional<Categoria> buscar(@PathVariable Long id){
-        return  categoriaRepository.findById(id);
-    }
 
+        return categoriaRepository.findById(id);
+}
     @PutMapping
-    public Categoria atualizarCategoria(@RequestBody Categoria categoria){
-        return categoriaRepository.save(categoria);
+    public ResponseEntity atualizarCategoria(@RequestBody CategoriaDTO categoriaDTO){
+        categoriaService.atualizarCategoria(categoriaDTO);
+        return ResponseEntity.notFound().build();
 
     }
     @PostMapping

@@ -1,16 +1,9 @@
 package com.marketplace.produto.service;
-
-
 import com.marketplace.produto.model.Categoria;
 import com.marketplace.produto.model.dto.CategoriaDTO;
-import com.marketplace.produto.model.dto.ProdutoDTO;
 import com.marketplace.produto.repository.CategoriaRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +24,6 @@ public class CategoriaService {
         List<Categoria> listar = categoriaRepository.findAll();
         return listar.stream().map(x -> modelMapper.map(x, CategoriaDTO.class)).collect(Collectors.toList());
     }
-
 
     public Categoria salvar(CategoriaDTO categoriaDTO) {
         Categoria categoria = modelMapper.map(categoriaDTO, Categoria.class);
