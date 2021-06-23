@@ -1,7 +1,10 @@
 package com.marketplace.produto.service;
+import com.marketplace.produto.model.Categoria;
+import com.marketplace.produto.model.dto.CategoriaDTO;
 import com.marketplace.produto.model.dto.ProdutoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +24,13 @@ public class DBTeste {
                 ProdutoDTO.builder().descricao("teclado").valor(valueOf(157.5)).build(),
                 ProdutoDTO.builder().descricao("mouse").valor(valueOf(100)).build());
 
+
+
+
+
+
         produtos.forEach(service::inserir);
+
 
 
 

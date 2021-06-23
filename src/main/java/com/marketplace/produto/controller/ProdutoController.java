@@ -1,11 +1,8 @@
 package com.marketplace.produto.controller;
-
-import com.marketplace.produto.enums.TipoExportacao;
-import com.marketplace.produto.model.Categoria;
 import com.marketplace.produto.model.Produto;
 import com.marketplace.produto.model.dto.ProdutoDTO;
+import com.marketplace.produto.repository.ProdutoRepository;
 import com.marketplace.produto.service.ProdutoService;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +18,8 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     @GetMapping
     public ResponseEntity buscarTodos(){
@@ -30,8 +29,9 @@ public class ProdutoController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity buscarPorId(@PathVariable Long id){
-        ProdutoDTO produto = produtoService.buscarPorId(id);
-        return ResponseEntity.ok(produto);
+          return produtoRepository.findById(id)
+                 .map(ResponseEntity::ok)
+                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping

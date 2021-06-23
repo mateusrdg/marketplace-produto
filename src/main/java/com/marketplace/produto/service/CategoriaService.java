@@ -1,5 +1,7 @@
 package com.marketplace.produto.service;
+import com.marketplace.produto.exceptions.RegistroNaoEncontradoException;
 import com.marketplace.produto.model.Categoria;
+import com.marketplace.produto.model.constantes.Excecoes;
 import com.marketplace.produto.model.dto.CategoriaDTO;
 import com.marketplace.produto.repository.CategoriaRepository;
 import org.modelmapper.ModelMapper;
@@ -23,6 +25,12 @@ public class CategoriaService {
     public List<CategoriaDTO> list() {
         List<Categoria> listar = categoriaRepository.findAll();
         return listar.stream().map(x -> modelMapper.map(x, CategoriaDTO.class)).collect(Collectors.toList());
+    }
+
+    public CategoriaDTO buscar(Long id){
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException(Excecoes.CATEGORIA_NAO_ENCONTRADA));
+        CategoriaDTO categoriaDTO = modelMapper.map(categoria, com.marketplace.produto.model.dto.CategoriaDTO.class);
+        return categoriaDTO;
     }
 
     public Categoria salvar(CategoriaDTO categoriaDTO) {

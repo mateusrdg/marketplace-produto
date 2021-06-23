@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.util.List;
 import java.net.URI;
-import java.util.Optional;
+
+
 
 @RestController
 @RequestMapping("/categorias")
@@ -22,16 +23,19 @@ public class CategoriaController {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+
+
     @GetMapping
-     public ResponseEntity list(){
+    public ResponseEntity list(){
         List<CategoriaDTO> categorias = categoriaService.list();
         return ResponseEntity.ok(categorias);
     }
     @GetMapping("{id}")
-    public Optional<Categoria> buscar(@PathVariable Long id){
-
-        return categoriaRepository.findById(id);
-}
+    public ResponseEntity buscar(@PathVariable Long id){
+          return categoriaRepository.findById(id)
+                  .map(ResponseEntity::ok)
+                  .orElse(ResponseEntity.notFound().build());
+    }
     @PutMapping
     public ResponseEntity atualizarCategoria(@RequestBody CategoriaDTO categoriaDTO){
         categoriaService.atualizarCategoria(categoriaDTO);
@@ -41,16 +45,15 @@ public class CategoriaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity salvar(@RequestBody CategoriaDTO categoriaDTO){
-         Categoria categorias = categoriaService.salvar(categoriaDTO);
+        Categoria categorias = categoriaService.salvar(categoriaDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(categorias.getId()).toUri();
         return ResponseEntity.created(uri).build();
 
     }
     @DeleteMapping
     public ResponseEntity remover(@PathVariable Long id){
-      categoriaService.remover(id);
-      return ResponseEntity.notFound().build();
+        categoriaService.remover(id);
+        return ResponseEntity.notFound().build();
     }
-
 
 }

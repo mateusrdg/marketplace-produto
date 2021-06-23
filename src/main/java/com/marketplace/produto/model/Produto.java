@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.mapping.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +20,11 @@ import java.util.List;
 @NoArgsConstructor
 public class Produto extends EntidadeBase {
 
+
     private String descricao;
 
     private String valor;
+
 
     @JsonIgnore
     @ManyToMany
