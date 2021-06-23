@@ -24,6 +24,8 @@ public class ProdutoDTO {
 
     private BigDecimal valor;
 
+    private List<Categoria> categorias;
+
 
 
 
