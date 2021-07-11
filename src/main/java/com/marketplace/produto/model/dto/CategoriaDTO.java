@@ -16,7 +16,7 @@ public class CategoriaDTO {
      private Long id;
      private String descricao;
 
-    private List<ProdutoDTO> produtos;
+     private List<ProdutoDTO> produtos;
 
 
 }

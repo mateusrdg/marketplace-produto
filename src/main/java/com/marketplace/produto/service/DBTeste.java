@@ -24,15 +24,7 @@ public class DBTeste {
                 ProdutoDTO.builder().descricao("teclado").valor(valueOf(157.5)).build(),
                 ProdutoDTO.builder().descricao("mouse").valor(valueOf(100)).build());
 
-
-
-
-
-
         produtos.forEach(service::inserir);
-
-
-
 
     }
 

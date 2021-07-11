@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 @Service
 public class CategoriaService {
 
+
     private CategoriaRepository categoriaRepository;
 
     private  ModelMapper modelMapper;
+
 
     public CategoriaService(CategoriaRepository categoriaRepository,ModelMapper modelMapper) {
         this.categoriaRepository = categoriaRepository;

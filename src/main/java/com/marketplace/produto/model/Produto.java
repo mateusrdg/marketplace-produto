@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.mapping.Set;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,7 +24,6 @@ public class Produto extends EntidadeBase {
     private String descricao;
 
     private String valor;
-
 
     @JsonIgnore
     @ManyToMany

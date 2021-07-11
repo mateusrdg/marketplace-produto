@@ -32,12 +32,11 @@ public class CategoriaServiceTest {
     private CategoriaRepository categoriaRepository;
 
     @Test
-    public void deveBuscarCategoria(){
+    public void deveBuscarCategoria() {
         Long id = 1L;
         CategoriaDTO categoriaDTO = getCategoriaDTO();
-
         Mockito.when(categoriaRepository.findById(id)).thenReturn(getCategoria());
-        Mockito.when(modelMapper.map(any(),any())).thenReturn(categoriaDTO);
+        Mockito.when(modelMapper.map(any(), any())).thenReturn(categoriaDTO);
 
         CategoriaDTO response = categoriaService.buscar(id);
 
@@ -45,7 +44,7 @@ public class CategoriaServiceTest {
     }
 
     @Test
-    public void deveLancarExecaoQuandoCategoriaNaoEncontrada(){
+    public void deveLancarExecaoQuandoCategoriaNaoEncontrada() {
         Long id = 1L;
 
         Mockito.when(categoriaRepository.findById(id)).thenReturn(Optional.empty());
@@ -58,8 +57,9 @@ public class CategoriaServiceTest {
         }
 
     }
+
     @Test
-    public void listarCategoria(){
+    public void listarCategoria() {
 
         List<Categoria> categorias = new ArrayList<>();
         Categoria categoria = new Categoria();
@@ -71,51 +71,45 @@ public class CategoriaServiceTest {
         categoria1.setDescricao("Acessorios de Informatica");
 
         Mockito.when(categoriaRepository.findAll()).thenReturn(categorias);
-        Mockito.when(modelMapper.map(any(),any())).thenReturn(getCategoriaDTO());
+        Mockito.when(modelMapper.map(any(), any())).thenReturn(getCategoriaDTO());
 
 
         List<CategoriaDTO> categoriaDto = categoriaService.list();
 
-        Assertions.assertEquals(2,categoriaDto.size());
+        Assertions.assertEquals(2, categoriaDto.size());
 
     }
+
     @Test
-    public void salvarCategoria(){
-
-        CategoriaDTO categoriaDTO = getCategoriaDTO();
-        categoriaDTO.setDescricao("Material Escolar");
-        Categoria categoria =categoriaService.salvar(categoriaDTO);
-
+    public void salvarCategoria() {
+        Categoria categoria = new Categoria();
+        categoria.setDescricao("Material Escolar");
+        Mockito.when(modelMapper.map(any(), any())).thenReturn(categoria);
         Mockito.when(categoriaRepository.save(categoria)).thenReturn(categoria);
-        Mockito.when(modelMapper.map(any(),any())).thenReturn(getCategoriaDTO());
 
-        Assertions.assertEquals("Material Escolar",categoriaDTO.getDescricao());
+        Categoria categoria1 = categoriaService.salvar(getCategoriaDTO());
+
+        Assertions.assertEquals("Material Escolar", categoria1.getDescricao());
 
     }
 
     @Test
-    public void AtulizaCategoria(){ ;
-         categoriaService.atualizarCategoria(getCategoriaDTO());
-         Categoria categoria= new Categoria();
-         categoria.setDescricao("Material Escolar");
+    public void atualizaCategoria() {
+        Categoria categoria = new Categoria();
+        categoria.setDescricao("Material Escolar");
+        Mockito.when(categoriaRepository.save(categoria)).thenReturn(categoria);
+        Mockito.when(modelMapper.map(any(), any())).thenReturn(categoria);
 
-         Mockito.when(categoriaRepository.save(categoria)).thenReturn(categoria);
-         Mockito.when(modelMapper.map(any(),any())).thenReturn(getCategoriaDTO());
-
-         Assertions.assertEquals("Material Escolar",categoria.getDescricao());
+        categoriaService.atualizarCategoria(getCategoriaDTO());
 
 
+        Mockito.verify(categoriaRepository).save(categoria);
     }
 
     @Test
     public void deletar() {
-     categoriaService.remover(1L);
-     Optional<Categoria> categoria = categoriaRepository.findById(1L);
-
-     Assertions.assertFalse(categoria.isPresent());
-
-
-
+        categoriaService.remover(1L);
+        Mockito.verify(categoriaRepository).deleteById(1L);
     }
 
     private CategoriaDTO getCategoriaDTO() {
@@ -129,4 +123,6 @@ public class CategoriaServiceTest {
         categoria.setDescricao("categoria");
         return Optional.of(categoria);
     }
+
+
 }
