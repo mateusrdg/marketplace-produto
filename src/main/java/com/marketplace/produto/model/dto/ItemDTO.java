@@ -9,8 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ItemDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class ItemDTO {
 
     private Long id;
     private int quantidade;

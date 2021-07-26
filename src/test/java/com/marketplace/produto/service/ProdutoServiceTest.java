@@ -3,7 +3,6 @@ package com.marketplace.produto.service;
 
 import com.marketplace.produto.exceptions.RegistroNaoEncontradoException;
 import com.marketplace.produto.model.Produto;
-import com.marketplace.produto.model.dto.CategoriaDTO;
 import com.marketplace.produto.model.dto.ProdutoDTO;
 import com.marketplace.produto.repository.ProdutoRepository;
 import org.junit.Test;

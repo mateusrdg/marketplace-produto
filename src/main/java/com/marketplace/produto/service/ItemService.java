@@ -24,7 +24,7 @@ public class ItemService {
     }
 
 
-    public List<ItemDTO> listas(){
+    public List<ItemDTO> buscaTodos(){
         List<Item> list = itemRepository.findAll();
         return list.stream().map(x ->modelMapper.map(x, ItemDTO.class)).collect(Collectors.toList());
     }
@@ -35,7 +35,7 @@ public class ItemService {
          return  itemDTO;
     }
 
-    public Item salvar(ItemDTO itemDTO){
+    public Item inserir(ItemDTO itemDTO){
         Item item = modelMapper.map(itemDTO,Item.class);
         return itemRepository.save(item);
 
@@ -46,7 +46,7 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public void remover(Long id){
+    public void deletar(Long id){
         itemRepository.deleteById(id);
     }
 

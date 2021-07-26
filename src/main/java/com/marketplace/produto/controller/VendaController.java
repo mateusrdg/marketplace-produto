@@ -24,7 +24,7 @@ public class VendaController {
      private VendaService vendaService;
 
      @GetMapping
-     public ResponseEntity listas(){
+     public ResponseEntity buscarTodos(){
           List<VendaDTO> vendas = vendaService.list();
           return ResponseEntity.ok(vendas);
      }
@@ -37,7 +37,7 @@ public class VendaController {
      }
      @PostMapping
      public ResponseEntity salvar(@RequestBody VendaDTO vendaDTO){
-        Venda vendas = vendaService.salvar(vendaDTO);
+        Venda vendas = vendaService.inserir(vendaDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(vendas.getId()).toUri();
         return ResponseEntity.created(uri).build();
      }
@@ -48,7 +48,7 @@ public class VendaController {
      }
      @DeleteMapping
      public ResponseEntity remover(@PathVariable Long id){
-          vendaService.remover(id);
+          vendaService.deletar(id);
           return ResponseEntity.notFound().build();
      }
 

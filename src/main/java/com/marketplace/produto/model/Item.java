@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class Item  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,7 @@ public class Item {
     private Venda venda;
     
     public double getValor(){
+
         return quantidade * preco ;
     }
 

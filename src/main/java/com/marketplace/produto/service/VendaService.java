@@ -24,17 +24,17 @@ public class VendaService {
     }
 
     public List<VendaDTO> list(){
-       List<Venda> lista = vendaRepository.findAll();
-       return lista.stream().map(x -> modelMapper.map(x ,VendaDTO.class)).collect(Collectors.toList());
+       List<Venda> list = vendaRepository.findAll();
+       return list.stream().map(x -> modelMapper.map(x ,VendaDTO.class)).collect(Collectors.toList());
     }
 
-    public VendaDTO buscar(Long id){
+    public VendaDTO buscarId(Long id){
         Venda venda = vendaRepository.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException(Excecoes.VENDA_NAO_ENCONTRADA));
         VendaDTO vendaDTO = modelMapper.map(venda,VendaDTO.class);
         return vendaDTO;
     }
 
-    public Venda salvar(VendaDTO vendaDTO){
+    public Venda inserir(VendaDTO vendaDTO){
         Venda venda = modelMapper.map(vendaDTO,Venda.class);
         return vendaRepository.save(venda);
     }
@@ -43,7 +43,7 @@ public class VendaService {
         Venda venda = modelMapper.map(vendaDTO,Venda.class);
         return vendaRepository.save(venda);
     }
-    public void remover(Long id) {
+    public void deletar(Long id) {
         vendaRepository.deleteById(id);
     }
 

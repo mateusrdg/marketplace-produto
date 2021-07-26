@@ -20,9 +20,7 @@ import java.util.List;
 @Table(name = "categoriaProduto")
 public class Categoria extends EntidadeBase{
 
-
     private String descricao;
-
 
     @ManyToMany(mappedBy = "categorias" )
     private List<Produto> produtos = new ArrayList<>();

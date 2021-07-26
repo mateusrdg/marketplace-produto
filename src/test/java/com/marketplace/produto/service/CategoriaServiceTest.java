@@ -44,7 +44,7 @@ public class CategoriaServiceTest {
     }
 
     @Test
-    public void deveLancarExecaoQuandoCategoriaNaoEncontrada() {
+    public void deveLancarExcecaoQuandoCategoriaNaoEncontrada() {
         Long id = 1L;
 
         Mockito.when(categoriaRepository.findById(id)).thenReturn(Optional.empty());

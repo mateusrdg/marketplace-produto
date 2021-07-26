@@ -25,7 +25,7 @@ public class ItemController {
 
     @GetMapping
     public ResponseEntity lista() {
-         List<ItemDTO> item = itemService.listas();
+         List<ItemDTO> item = itemService.buscaTodos();
          return ResponseEntity.ok(item);
     }
     @GetMapping("/{id}")
@@ -37,7 +37,7 @@ public class ItemController {
 
     @PostMapping
     public ResponseEntity <Item> salvar(@RequestBody ItemDTO itemDTO){
-        Item item = itemService.salvar(itemDTO);
+        Item item = itemService.inserir(itemDTO);
         URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(item.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
@@ -50,7 +50,7 @@ public class ItemController {
 
     @DeleteMapping
     public ResponseEntity remover(@PathVariable Long id) {
-        itemService.remover(id);
+        itemService.deletar(id);
         return ResponseEntity.notFound().build();
 
     }
