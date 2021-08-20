@@ -5,6 +5,7 @@ import com.marketplace.produto.model.dto.ItemDTO;
 import com.marketplace.produto.repository.ItemRepository;
 import com.marketplace.produto.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -36,7 +37,7 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity <Item> salvar(@RequestBody ItemDTO itemDTO){
+    public ResponseEntity salvar(@RequestBody ItemDTO itemDTO){
         Item item = itemService.inserir(itemDTO);
         URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(item.getId()).toUri();
         return ResponseEntity.created(uri).build();
@@ -48,10 +49,10 @@ public class ItemController {
 
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity remover(@PathVariable Long id) {
         itemService.deletar(id);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
 
     }
 }

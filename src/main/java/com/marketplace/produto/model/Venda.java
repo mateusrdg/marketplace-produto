@@ -17,10 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="venda")
-public class Venda {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Venda extends EntidadeBase {
+
     private String nome;
 
     @OneToMany(mappedBy = "venda")

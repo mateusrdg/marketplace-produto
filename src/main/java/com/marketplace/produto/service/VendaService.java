@@ -36,17 +36,23 @@ public class VendaService {
 
     public Venda inserir(VendaDTO vendaDTO){
         Venda venda = modelMapper.map(vendaDTO,Venda.class);
+        associarDados(venda);
         return vendaRepository.save(venda);
     }
 
     public  Venda atualizar(VendaDTO vendaDTO){
         Venda venda = modelMapper.map(vendaDTO,Venda.class);
+        associarDados(venda);
         return vendaRepository.save(venda);
     }
     public void deletar(Long id) {
+
         vendaRepository.deleteById(id);
     }
 
+    private void associarDados(Venda venda){
+
+    }
 
 
 

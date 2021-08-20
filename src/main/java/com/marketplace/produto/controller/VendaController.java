@@ -29,7 +29,7 @@ public class VendaController {
           return ResponseEntity.ok(vendas);
      }
 
-     @GetMapping("{id}")
+     @GetMapping("/{id}")
      public ResponseEntity<Venda> buscarId(@PathVariable Long id){
           return vendaRepository.findById(id)
                   .map(ResponseEntity :: ok)
@@ -44,12 +44,12 @@ public class VendaController {
      @PutMapping
      public  ResponseEntity atualizar(@RequestBody VendaDTO vendaDTO){
           vendaService.atualizar(vendaDTO);
-          return ResponseEntity.notFound().build();
+          return ResponseEntity.noContent().build();
      }
-     @DeleteMapping
+     @DeleteMapping("/{id}")
      public ResponseEntity remover(@PathVariable Long id){
           vendaService.deletar(id);
-          return ResponseEntity.notFound().build();
+          return ResponseEntity.noContent().build();
      }
 
 

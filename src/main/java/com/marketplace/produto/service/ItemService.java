@@ -37,17 +37,24 @@ public class ItemService {
 
     public Item inserir(ItemDTO itemDTO){
         Item item = modelMapper.map(itemDTO,Item.class);
+        associarDados(item);
         return itemRepository.save(item);
 
     }
 
     public Item atualzar(ItemDTO itemDTO){
         Item item= modelMapper.map(itemDTO,Item.class);
+        associarDados(item);
         return itemRepository.save(item);
     }
 
     public void deletar(Long id){
+
         itemRepository.deleteById(id);
+    }
+
+    private void associarDados(Item item){
+
     }
 
 
